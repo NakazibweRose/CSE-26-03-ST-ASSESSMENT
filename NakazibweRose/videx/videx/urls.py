@@ -16,13 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from web.views import landing_page
-from web.views import video_listing
-from web.views import upload_video
+from web import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', landing_page, name='landing_page'),
-    path('video_listing/', video_listing, name='video_listing'),
-    path('upload/', upload_video, name='upload_video'),
+    path('', views.landing, name='landing'),
+    path('videos/', views.video_list, name='video_list'),
+    path('upload/', views.upload_video, name='upload_video'),
+    path('video/<int:pk>/', views.video_detail, name='video_detail'),
 ]
